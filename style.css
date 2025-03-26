@@ -2,107 +2,170 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+}
+
+:root {
+    --gold: #c9a74d;
+    --ink: #1a1a1a;
+    --paper: #f0f0f0;
+    --blood: #8b0000;
 }
 
 body {
-    background-color: #1a1a1a;
-    color: #e0e0e0;
+    background-color: var(--ink);
+    color: var(--paper);
+    font-family: 'Noto Serif JP', serif;
+}
+
+/* Японский стиль текста */
+h1, h2, h3 {
+    font-family: 'Japanese', cursive;
+    letter-spacing: 2px;
 }
 
 .navbar {
-    background-color: #0d0d0d;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.95), rgba(20,20,20,0.95));
     padding: 1rem;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
+    border-bottom: 2px solid var(--gold);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 3rem;
 }
 
 .nav-link {
-    color: #c9a74d;
+    color: var(--paper);
     text-decoration: none;
     padding: 1rem;
     transition: all 0.3s ease;
+    position: relative;
+    font-family: 'Samurai', sans-serif;
+    font-size: 1.1rem;
 }
 
-.nav-link.active,
-.nav-link:hover {
-    color: #fff;
-    border-bottom: 2px solid #c9a74d;
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--blood);
+    transition: width 0.3s ease;
 }
 
-.content {
-    margin-top: 80px;
-    padding: 2rem;
-}
-
-.content-section {
-    display: none;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-.content-section.active {
-    display: block;
-    opacity: 1;
+.nav-link.active::after,
+.nav-link:hover::after {
+    width: 100%;
 }
 
 .hero {
-    height: 60vh;
+    height: 80vh;
     background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-                url('samurai-bg.jpg') center/cover;
+                url('images/hero-bg.jpg') center/cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('images/ink-texture.png');
+    opacity: 0.3;
+    pointer-events: none;
 }
 
 .hero h1 {
-    font-size: 4rem;
-    color: #c9a74d;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-size: 5rem;
+    color: var(--paper);
+    text-shadow: 4px 4px 8px rgba(0,0,0,0.8);
+    z-index: 1;
+    animation: titleFlow 3s ease-in-out infinite;
+}
+
+@keyframes titleFlow {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-5px) rotate(2deg); }
 }
 
 .divider {
-    border: 1px solid #c9a74d;
-    margin: 2rem 0;
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 3rem auto;
+    width: 60%;
+    position: relative;
+}
+
+.divider::after {
+    content: '✵';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--ink);
+    padding: 0 1rem;
+    color: var(--gold);
 }
 
 .chapters-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
+    padding: 2rem;
 }
 
 .chapter-card {
-    background: #262626;
-    padding: 1rem;
-    border-radius: 5px;
-    transition: transform 0.3s ease;
+    background: rgba(30,30,30,0.9);
+    border: 2px solid var(--gold);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
     cursor: pointer;
 }
 
 .chapter-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
 
 .chapter-image {
-    height: 200px;
+    height: 250px;
     background: #404040;
-    margin-bottom: 1rem;
+    background-size: cover;
+    background-position: center;
+    transition: all 0.5s ease;
 }
 
-@media (max-width: 768px) {
-    .chapters-grid {
-        grid-template-columns: 1fr;
-    }
+.chapter-card:hover .chapter-image {
+    transform: scale(1.05);
+}
+
+/* Стиль для чернильных брызг */
+.ink-splatter {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('images/ink-splatter.png');
+    mix-blend-mode: multiply;
+    opacity: 0.3;
+    pointer-events: none;
 }
