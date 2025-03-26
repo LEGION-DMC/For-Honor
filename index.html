@@ -1,81 +1,32 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Honor</title>
+    <title>For Honor - Самурайская сага</title>
+    <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="fonts/fonts.css">
 </head>
 <body>
-    <!-- Навигационная панель -->
     <nav class="navbar">
-        <div class="nav-container">
-            <a href="#home" class="nav-link active">Главная</a>
-            <a href="#chapters" class="nav-link">Главы</a>
-            <a href="#map" class="nav-link">Карта мира</a>
-            <a href="#materials" class="nav-link">Доп. материалы</a>
+        <ul class="nav-left">
+            <li><a href="#map">Карта мира</a></li>
+            <li><a href="#chapters">Главы</a></li>
+        </ul>
+        
+        <div class="logo">
+            <a href="#home"><img src="logo.png" alt="For Honor"></a>
         </div>
+
+        <ul class="nav-right">
+            <li><a href="#materials">Доп. материалы</a></li>
+            <li><a href="#author">Об авторе</a></li>
+        </ul>
     </nav>
 
-    <!-- Основной контент -->
-    <div class="content">
-        <!-- Главная -->
-        <section id="home" class="content-section active">
-            <div class="hero">
-                <h1>For Honor</h1>
-                <p>Самурайская сага</p>
-            </div>
-            <hr class="divider">
-            <div class="description">
-                <h2>О книге</h2>
-                <p>Ваш текст краткого описания книги...</p>
-            </div>
-            <hr class="divider">
-            <div class="author">
-                <h2>Об авторе</h2>
-                <p>Ваш текст об авторе...</p>
-            </div>
-        </section>
-
-        <!-- Главы -->
-        <section id="chapters" class="content-section">
-            <h2>Главы</h2>
-            <hr class="divider">
-            <div class="chapters-grid">
-                <!-- Повторить блок для каждой главы -->
-                <div class="chapter-card">
-                    <div class="chapter-image"></div>
-                    <h3>Глава 1</h3>
-                </div>
-                <!-- ... -->
-            </div>
-        </section>
-
-        <!-- Карта мира -->
-        <section id="map" class="content-section">
-            <h2>Карта мира</h2>
-            <hr class="divider">
-            <div class="map-container">
-                <div class="map-container">
-                    <img src="images/japanese-map.jpg" alt="Карта мира" class="map-image">
-                <div class="map-markers">
-        <!-- Добавьте маркеры с анимацией -->
-    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Доп. материалы -->
-        <section id="materials" class="content-section">
-            <h2>Дополнительные материалы</h2>
-            <hr class="divider">
-            <div class="materials-content">
-                <!-- Контент материалов -->
-            </div>
-        </section>
-    </div>
+    <main id="content">
+        <!-- Динамическое содержимое -->
+    </main>
 
     <script src="script.js"></script>
 </body>
