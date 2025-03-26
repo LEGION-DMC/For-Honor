@@ -38,3 +38,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// Параллакс-эффект для героя
+document.addEventListener('mousemove', (e) => {
+    const hero = document.querySelector('.hero');
+    const x = (window.innerWidth - e.pageX) / 30;
+    const y = (window.innerHeight - e.pageY) / 30;
+    if(hero) hero.style.backgroundPosition = `${x}px ${y}px`;
+});
+
+// Инициализация карты
+function initMap() {
+    document.querySelectorAll('.map-marker').forEach(marker => {
+        marker.addEventListener('click', () => {
+            // Логика взаимодействия с маркером
+        });
+    });
+}
