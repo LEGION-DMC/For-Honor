@@ -1,31 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Honor</title>
-    <link rel="icon" type="image/png" href="logo.png">
+    <title>Ghost of Honor - Самурайская сага</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="logo.png">
 </head>
 <body>
     <nav class="navbar">
-        <ul class="nav-left">
-            <li><a href="#map">Карта мира</a></li>
-            <li><a href="#chapters">Главы</a></li>
-        </ul>
+        <div class="nav-links">
+            <a href="#map" class="nav-link">Карта</a>
+            <a href="#chapters" class="nav-link">Главы</a>
+        </div>
         
-        <div class="logo">
-            <a href="#home" id="home-link"><img src="logo.png" alt="For Honor"></a>
+        <div class="logo-container">
+            <img src="logo.png" alt="Логотип" class="logo">
+            <h1 class="title">Ghost of Honor</h1>
         </div>
 
-        <ul class="nav-right">
-            <li><a href="#materials">Доп. материалы</a></li>
-            <li><a href="#author">Об авторе</a></li>
-        </ul>
+        <div class="nav-links">
+            <a href="#materials" class="nav-link">Материалы</a>
+            <a href="#author" class="nav-link">Автор</a>
+        </div>
     </nav>
 
-    <main id="content">
-        
+    <main class="content">
+        <!-- Главная -->
+        <section id="home" class="tab-content active">
+            <div class="section-block">
+                <h2>Самурайская сага о чести и предательстве</h2>
+                <p>Война кланов расколола страну... [описание]</p>
+            </div>
+            <hr class="divider">
+            <img src="main-image.jpg" alt="Обложка" class="main-image">
+            <hr class="divider">
+            <div class="button-group">
+                <button class="samurai-btn">Читать онлайн</button>
+                <button class="samurai-btn">Купить книгу</button>
+                <button class="samurai-btn">Отзывы</button>
+            </div>
+        </section>
+
+        <!-- Главы -->
+        <section id="chapters" class="tab-content">
+            <div class="section-block">
+                <h3>Путь воина</h3>
+                <p>Выберите главу для чтения:</p>
+            </div>
+            <hr class="divider">
+            <div class="cards-container">
+                <div class="chapter-card">Глава 1: Рассвет катаны</div>
+                <div class="chapter-card">Глава 2: Кровавый туман</div>
+                <!-- остальные главы -->
+            </div>
+            <hr class="divider">
+            <p class="note">Продолжение следует...</p>
+        </section>
+
+        <!-- Карта -->
+        <section id="map" class="tab-content">
+            <div class="section-block">
+                <h3>Мир самураев</h3>
+                <p>Исследуйте ключевые локации:</p>
+            </div>
+            <hr class="divider">
+            <div class="interactive-map" id="world-map"></div>
+            <hr class="divider">
+            <p class="note">*Нажмите на метку для деталей</p>
+        </section>
+
+        <!-- Материалы -->
+        <section id="materials" class="tab-content">
+            <div class="section-block">
+                <h3>Архив знаний</h3>
+                <p>Исторические материалы:</p>
+            </div>
+            <hr class="divider">
+            <div class="materials-group">
+                <h4>Персонажи</h4>
+                <div class="material-card">Хроники кланов</div>
+                <div class="material-card">Генеалогическое древо</div>
+            </div>
+            <hr class="divider">
+            <div class="materials-group">
+                <h4>Артефакты</h4>
+                <div class="material-card">Оружие эпохи</div>
+                <div class="material-card">Символика</div>
+            </div>
+        </section>
+
+        <!-- Автор -->
+        <section id="author" class="tab-content">
+            <div class="author-card">
+                <h3>Об авторе</h3>
+                <p>[Биография]</p>
+            </div>
+            <hr class="divider">
+            <div class="book-card">
+                <h3>О книге</h3>
+                <p>[История создания]</p>
+            </div>
+            <hr class="divider">
+            <p class="note">Все права защищены © 2024</p>
+        </section>
     </main>
 
     <script src="script.js"></script>
