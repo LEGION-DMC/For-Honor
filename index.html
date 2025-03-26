@@ -7,58 +7,66 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Навигационная панель -->
     <nav class="navbar">
-        <a href="#home" class="nav-link active">Главная</a>
-        <a href="#chapters" class="nav-link">Главы</a>
-        <a href="#map" class="nav-link">Карта мира</a>
-        <a href="#materials" class="nav-link">Доп. материалы</a>
+        <div class="nav-container">
+            <a href="#home" class="nav-link active">Главная</a>
+            <a href="#chapters" class="nav-link">Главы</a>
+            <a href="#map" class="nav-link">Карта мира</a>
+            <a href="#materials" class="nav-link">Доп. материалы</a>
+        </div>
     </nav>
 
-    <div class="content-container">
+    <!-- Основной контент -->
+    <div class="content">
         <!-- Главная -->
-        <section id="home" class="content active">
+        <section id="home" class="content-section active">
             <div class="hero">
                 <h1>For Honor</h1>
                 <p>Самурайская сага</p>
             </div>
-            <div class="divider"></div>
-            <p class="description">В мире жестоких междоусобиц и чести, следуйте за путь самурая, чья судьба переплетена с судьбой целой империи...</p>
-            <div class="divider"></div>
-            <h2>Об авторе</h2>
-            <p>[Ваше имя] - писатель, посвятивший себя изучению японской истории и культуры...</p>
+            <hr class="divider">
+            <div class="description">
+                <h2>О книге</h2>
+                <p>Ваш текст краткого описания книги...</p>
+            </div>
+            <hr class="divider">
+            <div class="author">
+                <h2>Об авторе</h2>
+                <p>Ваш текст об авторе...</p>
+            </div>
         </section>
 
         <!-- Главы -->
-        <section id="chapters" class="content">
+        <section id="chapters" class="content-section">
             <h2>Главы</h2>
-            <div class="divider"></div>
-            <div class="grid-container">
+            <hr class="divider">
+            <div class="chapters-grid">
                 <!-- Повторить блок для каждой главы -->
                 <div class="chapter-card">
-                    <div class="card-image"></div>
-                    <h3>Глава 1: Рассвет</h3>
+                    <div class="chapter-image"></div>
+                    <h3>Глава 1</h3>
                 </div>
-                <!-- Добавить больше глав -->
-            </div>
-            <div class="divider"></div>
-            <h2>Дополнения</h2>
-            <div class="grid-container">
-                <!-- Блоки дополнений -->
+                <!-- ... -->
             </div>
         </section>
 
         <!-- Карта мира -->
-        <section id="map" class="content">
+        <section id="map" class="content-section">
             <h2>Карта мира</h2>
-            <div class="divider"></div>
-            <div class="map-container" id="worldMap"></div>
+            <hr class="divider">
+            <div class="map-container">
+                <!-- Вставить интерактивную карту или изображение -->
+            </div>
         </section>
 
         <!-- Доп. материалы -->
-        <section id="materials" class="content">
+        <section id="materials" class="content-section">
             <h2>Дополнительные материалы</h2>
-            <div class="divider"></div>
-            <p>Иллюстрации, исторические заметки, глоссарий...</p>
+            <hr class="divider">
+            <div class="materials-content">
+                <!-- Контент материалов -->
+            </div>
         </section>
     </div>
 
