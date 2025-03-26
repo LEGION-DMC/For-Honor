@@ -135,3 +135,13 @@ a:hover::after {
     color: #fff;
     text-align: center;
 }
+.logo a {
+    display: block;
+    line-height: 0; /* Убирает пробел под изображением */
+}
+
+/* Добавляем hover-эффект для логотипа */
+.logo:hover img {
+    transform: scale(1.1);
+    filter: grayscale(0) contrast(1.2);
+}
