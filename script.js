@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const content = document.getElementById('content');
+    
+    // Все секции
     const sections = {
         home: `
             <section class="home-section">
@@ -7,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h1>For Honor</h1>
                 </div>
                 <div class="divider"></div>
-                <p>Эпическая сага о пути самурая...</p>
+                <p>Эпическая сага о пути самурая через кровавые войны и внутренние конфликты. История чести, предательства и неизбежной судьбы.</p>
             </section>
         `,
         chapters: `
@@ -53,20 +55,21 @@ document.addEventListener('DOMContentLoaded', () => {
         `,
     };
 
-    // Навигация
+    // Обработчик навигации
     document.querySelectorAll('nav a').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            const section = e.target.getAttribute('href').slice(1);
+            const target = e.target.closest('a');
+            const section = target.getAttribute('href').slice(1);
             loadSection(section);
         });
     });
 
     function loadSection(section) {
-        content.innerHTML = sections[section] || '<h2>Страница в разработке</h2>';
+        content.innerHTML = sections[section] || sections.home; // Всегда возвращаем home если секция не найдена
         window.scrollTo(0, 0);
     }
 
-    // Загрузка главной страницы по умолчанию
+    // Инициализация
     loadSection('home');
 });
