@@ -24,7 +24,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </section>
         `,
-        // Добавьте остальные секции по аналогии
+        materials: `
+            <section class="materials-section">
+                <div class="hero">
+                    <h1>Доп. материалы</h1>
+                </div>
+                <div class="divider"></div>
+                <p>Эпическая сага о пути самурая...</p>
+            </section>
+        `,
+        author: `
+            <section class="author-section">
+                <div class="hero">
+                    <h1>Автор</h1>
+                </div>
+                <div class="divider"></div>
+                <p>Эпическая сага о пути самурая...</p>
+            </section>
+        `,
+        map: `
+            <section class="map-section">
+                <div class="hero">
+                    <h1>Карта</h1>
+                </div>
+                <div class="divider"></div>
+                <p>Эпическая сага о пути самурая...</p>
+            </section>
+        `,
     };
 
     // Навигация
