@@ -76,6 +76,14 @@ body {
     font-weight: bold;
 }
 
+.menu-tab {
+    will-change: color, background;
+}
+
+.menu-tab::before {
+    will-change: height;
+}
+
 /* Основное содержимое */
 .content {
     max-width: 1200px;
