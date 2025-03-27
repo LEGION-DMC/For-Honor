@@ -3,107 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ghost of Honor - Самурайская сага</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Книжный проект</title>
     <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-links">
-            <a href="#map" class="nav-link">Карта</a>
-            <a href="#chapters" class="nav-link">Главы</a>
-        </div>
-        
-        <div class="logo-container">
-            <img src="logo.png" alt="Логотип" class="logo">
-            <h1 class="title">Ghost of Honor</h1>
-        </div>
-
-        <div class="nav-links">
-            <a href="#materials" class="nav-link">Материалы</a>
-            <a href="#author" class="nav-link">Автор</a>
-        </div>
+    <nav class="menu-bar">
+        <ul class="menu-list">
+            <li><a href="#map" class="menu-link">Карта мира</a></li>
+            <li><a href="#chapters" class="menu-link">Главы</a></li>
+            <li class="logo-item">
+                <a href="#main" class="logo-link">
+                    <img src="logo.png" alt="Логотип" class="logo">
+                    <span class="book-title">Название книги</span>
+                </a>
+            </li>
+            <li><a href="#materials" class="menu-link">Доп. материалы</a></li>
+            <li><a href="#author" class="menu-link">Об авторе</a></li>
+        </ul>
     </nav>
 
-    <main class="content">
-        <!-- Главная -->
-        <section id="home" class="tab-content active">
-            <div class="section-block">
-                <h2>Самурайская сага о чести и предательстве</h2>
-                <p>Война кланов расколола страну... [описание]</p>
-            </div>
-            <hr class="divider">
-            <img src="fon.jpg" alt="Обложка" class="main-image">
-            <hr class="divider">
+    <main class="content-area">
+        <!-- Секции контента -->
+        <section id="main" class="content-section active">
+            <h1>Добро пожаловать</h1>
+            <hr>
+            <p>Описание вашей книги...</p>
+            <hr>
+            <img src="cover.jpg" alt="Обложка" class="book-cover">
+            <hr>
             <div class="button-group">
-                <button class="samurai-btn">Читать онлайн</button>
-                <button class="samurai-btn">Купить книгу</button>
-                <button class="samurai-btn">Отзывы</button>
+                <button class="main-btn">Читать</button>
+                <button class="main-btn">Оглавление</button>
+                <button class="main-btn">Отзывы</button>
             </div>
         </section>
 
-        <!-- Главы -->
-        <section id="chapters" class="tab-content">
-            <div class="section-block">
-                <h3>Путь воина</h3>
-                <p>Выберите главу для чтения:</p>
-            </div>
-            <hr class="divider">
-            <div class="cards-container">
-                <div class="chapter-card">Глава 1: Рассвет катаны</div>
-                <div class="chapter-card">Глава 2: Кровавый туман</div>
-                <!-- остальные главы -->
-            </div>
-            <hr class="divider">
-            <p class="note">Продолжение следует...</p>
-        </section>
-
-        <!-- Карта -->
-        <section id="map" class="tab-content">
-            <div class="section-block">
-                <h3>Мир самураев</h3>
-                <p>Исследуйте ключевые локации:</p>
-            </div>
-            <hr class="divider">
-            <div class="interactive-map" id="world-map"></div>
-            <hr class="divider">
-            <p class="note">*Нажмите на метку для деталей</p>
-        </section>
-
-        <!-- Материалы -->
-        <section id="materials" class="tab-content">
-            <div class="section-block">
-                <h3>Архив знаний</h3>
-                <p>Исторические материалы:</p>
-            </div>
-            <hr class="divider">
-            <div class="materials-group">
-                <h4>Персонажи</h4>
-                <div class="material-card">Хроники кланов</div>
-                <div class="material-card">Генеалогическое древо</div>
-            </div>
-            <hr class="divider">
-            <div class="materials-group">
-                <h4>Артефакты</h4>
-                <div class="material-card">Оружие эпохи</div>
-                <div class="material-card">Символика</div>
-            </div>
-        </section>
-
-        <!-- Автор -->
-        <section id="author" class="tab-content">
-            <div class="author-card">
-                <h3>Об авторе</h3>
-                <p>[Биография]</p>
-            </div>
-            <hr class="divider">
-            <div class="book-card">
-                <h3>О книге</h3>
-                <p>[История создания]</p>
-            </div>
-            <hr class="divider">
-            <p class="note">Все права защищены © 2024</p>
-        </section>
+        <!-- Остальные секции (аналогично) -->
     </main>
 
     <script src="script.js"></script>
