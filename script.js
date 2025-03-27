@@ -124,25 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
             map.classList.remove('zooming');
         });
 
-        // Кнопки зума
-        const zoomControls = document.createElement('div');
-        zoomControls.className = 'zoom-controls';
-        zoomControls.innerHTML = `
-            <button class="zoom-btn" data-action="in">+</button>
-            <button class="zoom-btn" data-action="out">−</button>
-        `;
-        map.parentElement.appendChild(zoomControls);
-
-        document.querySelectorAll('.zoom-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                scale = btn.dataset.action === 'in' 
-                    ? Math.min(3, scale + 0.2) 
-                    : Math.max(1, scale - 0.2);
-                updateMapTransform();
-            });
-        });
-    };
-
     // Всплывающее окно локации
     const showLocationPopup = (title) => {
         const popup = document.createElement('div');
