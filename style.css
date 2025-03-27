@@ -1,350 +1,276 @@
 @font-face {
     font-family: 'Kashima';
     src: url('Kashima.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
     font-family: 'KellySlab';
     src: url('KellySlab.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    transition: all 0.3s ease;
+    color: #000;
 }
 
 body {
-    color: black;
-    font-family: 'KellySlab', sans-serif;
-    min-height: 100vh;
+    background: #fff;
+    font-family: 'KellySlab';
+    line-height: 1.6;
 }
 
-.navbar {
+/* Верхняя панель */
+.menu-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.menu-list {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 5%;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 1px solid #3a3a3a;
+    padding: 1rem 2rem;
+    list-style: none;
 }
 
-.logo-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
+.menu-link {
+    text-decoration: none;
+    font-family: 'Kashima';
+    transition: all 0.3s ease;
+    padding: 0.8rem 1.2rem;
+    display: inline-block;
+}
+
+.menu-link:hover {
+    color: #666;
+    transform: translateY(-2px);
+}
+
+.logo-item {
+    text-align: center;
+    flex-grow: 1;
 }
 
 .logo {
-    width: 60px;
-    height: 60px;
-    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+    width: 70px;
+    height: 70px;
+    transition: transform 0.3s ease;
 }
 
-.title {
-    font-family: 'Kashima', serif;
-    color: black;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+.logo:hover {
+    transform: scale(1.1);
+}
+
+.book-title {
+    display: block;
+    font-family: 'Kashima';
     margin-top: 0.5rem;
+    font-size: 1.2rem;
 }
 
-.nav-links {
-    display: flex;
-    gap: 2rem;
+/* Основной контент */
+.content-area {
+    margin-top: 120px;
+    padding: 2rem 15%;
+    min-height: calc(100vh - 120px);
 }
 
-.nav-link {
-    color: black;
-    text-decoration: none;
-    font-family: 'Kashima', serif;
-    position: relative;
-    padding: 0.5rem 0;
-    gap: 1.5rem;
-    margin: 0 2rem; /* Ближе к лого */
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background: #c93030;
-    transition: width 0.3s;
-}
-
-.nav-link:hover::after {
-    width: 100%;
-}
-
-.content {
-    margin-top: 150px;
-    padding: 2rem 5%;
-    min-height: calc(100vh - 150px);
-}
-
-.tab-content {
+.content-section {
     display: none;
     opacity: 0;
-    transform: translateY(20px);
+    animation: fadeIn 0.5s forwards;
 }
 
-.tab-content.active {
+.content-section.active {
     display: block;
     opacity: 1;
-    transform: translateY(0);
-    animation: fadeIn 0.5s ease;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* Адаптивность */
-@media (max-width: 768px) {
-    .nav-links {
-        gap: 1rem;
-        font-size: 0.9rem;
-    }
-    
-    .logo {
-        width: 45px;
-        height: 45px;
-    }
-    
-    .title {
-        font-size: 1.2rem;
-    }
-}
-
-/* Новые стили */
-.section-block {
+/* Элементы секций */
+h1, h2, h3, h4 {
+    font-family: 'Kashima';
     text-align: center;
     margin: 2rem 0;
-    padding: 0 1rem;
 }
 
-.divider {
+hr {
     border: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #c93030, transparent);
-    margin: 2rem auto;
-    width: 80%;
+    height: 1px;
+    background: #000;
+    margin: 2.5rem auto;
+    width: 60%;
 }
 
-.main-image {
+/* Главная страница */
+.book-cover {
+    max-width: 400px;
     width: 100%;
-    max-width: 600px;
-    height: auto;
-    border-radius: 5px;
-    margin: 1rem auto;
+    margin: 2rem auto;
     display: block;
+    border: 3px solid #000;
+    padding: 5px;
 }
 
 .button-group {
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 2rem;
     flex-wrap: wrap;
+    margin: 3rem 0;
 }
 
-.samurai-btn {
-    color: black;
-    border: 2px solid black;
-    padding: 1rem 2rem;
-    cursor: pointer;
+.main-btn {
+    background: transparent;
+    border: 2px solid #000;
+    padding: 1rem 2.5rem;
     font-family: 'Kashima';
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.samurai-btn:hover {
-    background: black;
-    color: wheat;
-}
-
-.cards-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    padding: 1rem;
-}
-
-.chapter-card, .material-card {
-    padding: 1.5rem;
-    border-left: 4px solid black;
     cursor: pointer;
-    min-height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
 }
 
-.interactive-map {
-    background: url('map.png') no-repeat center;
-    background-size: cover;
-    height: 500px;
-    position: relative;
-    margin: 1rem auto;
-    width: 90%;
-    border: 2px solid #c93030;
+.main-btn:hover {
+    background: #000;
+    color: #fff;
+    transform: scale(1.05);
 }
 
-.author-card, .book-card {
-    border-left: 4px solid black;
+/* Главы */
+.chapter-card {
+    background: #fff;
+    border: 2px solid #000;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+}
+
+.chapter-card:hover {
+    transform: translateX(30px);
+    box-shadow: -8px 8px 0 #000;
+}
+
+/* Доп. материалы */
+.material-card {
+    background: #fff;
+    border: 2px solid #000;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    max-width: 600px;
+    transition: all 0.3s ease;
+}
+
+.material-card:hover {
+    transform: rotate(1deg) translateX(10px);
+    background: #f8f8f8;
+}
+
+/* Об авторе */
+.author-info, .book-info {
+    background: #fff;
+    border: 2px solid #000;
     padding: 2rem;
     margin: 2rem auto;
-    max-width: 800px;
-    border-radius: 5px;
+    max-width: 700px;
 }
 
-.note {
-    text-align: center;
-    font-style: italic;
-    color: #888;
-    margin: 1rem;
+.author-info:hover, .book-info:hover {
+    transform: skewX(-2deg);
+    margin-left: 30px;
+}
+
+/* Карта мира */
+.map-container {
+    border: 3px solid #000;
+    padding: 10px;
+    max-width: 900px;
+    margin: 2rem auto;
+}
+
+.map-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.map-legend {
+    background: #fff;
+    border: 2px solid #000;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    max-width: 400px;
+}
+
+.map-legend ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.map-legend li {
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 /* Адаптивность */
 @media (max-width: 768px) {
-    .nav-links {
-        gap: 1rem;
-        margin: 0 1rem;
+    .menu-list {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 1rem;
     }
-    
+
+    .menu-link {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .content-area {
+        padding: 2rem 5%;
+        margin-top: 90px;
+    }
+
     .button-group {
-        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .main-btn {
+        padding: 0.8rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-list li:not(.logo-item) {
+        display: none;
+    }
+
+    .book-title {
+        font-size: 1rem;
+    }
+
+    hr {
         width: 80%;
-        margin: auto;
+        margin: 1.5rem auto;
     }
-    
-    .interactive-map {
-        height: 300px;
     }
-}
-
-/* Добавить в style.css */
-.map-marker {
-    position: absolute;
-    cursor: pointer;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-}
-
-.marker-pin {
-    width: 20px;
-    height: 20px;
-    background: #c93030;
-    border-radius: 50%;
-    position: relative;
-    animation: pulse 2s infinite;
-}
-
-.marker-tooltip {
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(26, 26, 26, 0.95);
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    white-space: nowrap;
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
-}
-
-.map-marker:hover .marker-tooltip {
-    opacity: 1;
-}
-
-.location-popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #1a1a1a;
-    padding: 2rem;
-    border: 2px solid #c93030;
-    z-index: 1001;
-    max-width: 90%;
-    width: 500px;
-}
-
-.close-popup {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    background: none;
-    border: none;
-    color: #c93030;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
-}
-
-body {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-/* Анимации плашек */
-@keyframes cardAppear {
-    from {
-        opacity: 0;
-        transform: translateY(20px) rotateX(-30deg);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) rotateX(0);
-    }
-}
-
-.chapter-card, .material-card, .author-card, .book-card {
-    animation: cardAppear 0.6s ease forwards;
-    opacity: 0;
-    transform-style: preserve-3d;
-}
-
-/* Задержки для последовательного появления */
-.chapter-card:nth-child(1) { animation-delay: 0.2s; }
-.chapter-card:nth-child(2) { animation-delay: 0.4s; }
-.chapter-card:nth-child(3) { animation-delay: 0.6s; }
-
-.material-card {
-    animation-delay: 0.3s;
-}
-
-/* Стили для зума карты */
-.interactive-map {
-    overflow: hidden;
-    cursor: grab;
-    transition: transform 0.3s ease;
-}
-
-.interactive-map.zooming {
-    cursor: grabbing;
-}
-
-.map-marker {
-    transition: transform 0.3s ease;
-}
