@@ -260,6 +260,38 @@ hr {
     }
 }
 
+/* Активное состояние навигации */
+.menu-link.active {
+    position: relative;
+    color: #333;
+}
+
+.menu-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 60%;
+    height: 2px;
+    background: #000;
+    transform: translateX(-50%);
+    animation: underline 0.3s ease;
+}
+
+@keyframes underline {
+    from { width: 0 }
+    to { width: 60% }
+}
+
+/* Переменные для адаптива */
+:root {
+    --vh: 1vh;
+}
+
+.content-area {
+    min-height: calc(var(--vh) * 100 - 120px);
+}
+
 @media (max-width: 480px) {
     .menu-list li:not(.logo-item) {
         display: none;
