@@ -1,191 +1,141 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Элементы управления
+    const sections = document.querySelectorAll('.content-section');
+    const navLinks = document.querySelectorAll('.menu-link');
+    const logoLink = document.querySelector('.logo-link');
+    const body = document.body;
+
+    // Настройки анимации
+    const animationConfig = {
+        duration: 400,
+        easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+        scrollBehavior: 'smooth'
+    };
+
     // Инициализация состояния
-    let currentActiveTab = null;
-    let scale = 1;
-    let translateX = 0;
-    let translateY = 0;
-    let isDragging = false;
-    let startX, startY;
+    let currentSection = null;
+    let isAnimating = false;
 
-    // Элементы DOM
-    const tabContents = document.querySelectorAll('.tab-content');
-    const navLinks = document.querySelectorAll('.nav-link');
-    const logoContainer = document.querySelector('.logo-container');
-    const map = document.getElementById('world-map');
+    // Функция активации секции
+    const activateSection = (sectionId) => {
+        if (isAnimating) return;
+        isAnimating = true;
 
-    // Основная функция активации вкладок
-    const activateTab = (tabId) => {
-        // Скрытие всех вкладок
-        tabContents.forEach(content => {
-            content.style.opacity = 0;
-            content.classList.remove('active');
-        });
-
-        // Показ целевой вкладки
-        const targetTab = document.getElementById(tabId);
-        if (targetTab) {
-            targetTab.classList.add('active');
-            setTimeout(() => {
-                targetTab.style.opacity = 1;
-            }, 50);
+        const targetSection = document.getElementById(sectionId);
+        if (!targetSection) {
+            console.error(`Section ${sectionId} not found!`);
+            isAnimating = false;
+            return;
         }
 
-        // Обновление истории браузера
-        window.history.replaceState(null, null, `#${tabId}`);
-        currentActiveTab = tabId;
+        // Анимация перехода
+        requestAnimationFrame(() => {
+            // Скрытие текущей секции
+            if (currentSection) {
+                currentSection.style.opacity = '0';
+                currentSection.style.transform = 'translateY(20px)';
+            }
 
-        // Сброс анимаций карточек
-        document.querySelectorAll('.chapter-card, .material-card').forEach(card => {
-            card.style.animation = 'none';
-            void card.offsetWidth; // Принудительный перезапуск анимации
-            card.style.animation = '';
+            // Показать целевую секцию после задержки
+            setTimeout(() => {
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                    section.style.opacity = '0';
+                });
+
+                targetSection.classList.add('active');
+                targetSection.style.opacity = '1';
+                targetSection.style.transform = 'translateY(0)';
+                currentSection = targetSection;
+
+                // Обновление истории браузера
+                history.pushState({ section: sectionId }, '', `#${sectionId}`);
+                
+                // Обновление активных ссылок
+                updateActiveNav(sectionId);
+                
+                // Прокрутка к началу
+                window.scrollTo({
+                    top: 0,
+                    behavior: animationConfig.scrollBehavior
+                });
+
+                isAnimating = false;
+            }, animationConfig.duration);
         });
-
-        // Прокрутка вверх с анимацией
-        setTimeout(() => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }, 300);
     };
 
-    // Система навигации
-    const handleNavigation = (e) => {
+    // Обновление активной навигации
+    const updateActiveNav = (sectionId) => {
+        navLinks.forEach(link => {
+            const linkSection = link.getAttribute('href').substring(1);
+            link.classList.toggle('active', linkSection === sectionId);
+        });
+    };
+
+    // Обработчик кликов по навигации
+    const handleNavClick = (e) => {
         e.preventDefault();
-        const tabId = e.target.closest('a').hash.substring(1);
-        if (tabId !== currentActiveTab) activateTab(tabId);
+        const sectionId = e.currentTarget.getAttribute('href').substring(1);
+        if (sectionId === currentSection?.id) return;
+        activateSection(sectionId);
     };
 
-    // Инициализация интерактивной карты
-    const initInteractiveMap = () => {
-        if (!map) return;
+    // Обработчик истории браузера
+    const handlePopState = (e) => {
+        const sectionId = e.state?.section || 'main';
+        activateSection(sectionId);
+    };
 
-        // Добавление меток
-        const markers = [
-            [25, 40, 'Замок Акаги'],
-            [60, 30, 'Деревня Сирануи'],
-            [45, 70, 'Священная гора']
-        ];
-
-        markers.forEach(([x, y, title]) => {
-            const marker = document.createElement('div');
-            marker.className = 'map-marker';
-            marker.style.left = `${x}%`;
-            marker.style.top = `${y}%`;
-            marker.innerHTML = `
-                <div class="marker-pin"></div>
-                <div class="marker-tooltip">${title}</div>
-            `;
-
-            marker.addEventListener('click', (e) => {
-                e.stopPropagation();
-                showLocationPopup(title);
-            });
-            map.appendChild(marker);
+    // Инициализация событий
+    const init = () => {
+        // Навигационные ссылки
+        navLinks.forEach(link => {
+            link.addEventListener('click', handleNavClick);
         });
 
-        // Обработчики зума
-        const updateMapTransform = () => {
-            const maxTranslate = (scale - 1) * 100;
-            translateX = Math.min(Math.max(-maxTranslate, translateX), maxTranslate);
-            translateY = Math.min(Math.max(-maxTranslate, translateY), maxTranslate);
-            
-            map.style.transform = `
-                scale(${scale})
-                translate(${translateX}px, ${translateY}px)
-            `;
-        };
-
-        // Зум колесом мыши
-        map.addEventListener('wheel', (e) => {
+        // Логотип
+        logoLink.addEventListener('click', (e) => {
             e.preventDefault();
-            scale = Math.min(Math.max(1, scale * (e.deltaY > 0 ? 0.9 : 1.1)), 3);
-            updateMapTransform();
+            if (currentSection?.id === 'main') return;
+            activateSection('main');
         });
 
-        // Перемещение карты
-        map.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            map.classList.add('zooming');
-            startX = e.clientX - translateX;
-            startY = e.clientY - translateY;
-        });
+        // История браузера
+        window.addEventListener('popstate', handlePopState);
 
-        document.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            translateX = e.clientX - startX;
-            translateY = e.clientY - startY;
-            updateMapTransform();
-        });
-
-        document.addEventListener('mouseup', () => {
-            isDragging = false;
-            map.classList.remove('zooming');
-        });
-
-    // Всплывающее окно локации
-    const showLocationPopup = (title) => {
-        const popup = document.createElement('div');
-        popup.className = 'location-popup';
-        popup.innerHTML = `
-            <h4>${title}</h4>
-            <p>Описание локации...</p>
-            <button class="close-popup">&times;</button>
-        `;
-        
-        popup.querySelector('.close-popup').addEventListener('click', () => popup.remove());
-        document.body.appendChild(popup);
+        // Первоначальная загрузка
+        const initialSection = window.location.hash.substring(1) || 'main';
+        activateSection(initialSection);
     };
 
-    // Обработчики событий
-    const initEventHandlers = () => {
-        // Навигация
-        navLinks.forEach(link => link.addEventListener('click', handleNavigation));
-        logoContainer.addEventListener('click', (e) => {
-            e.preventDefault();
-            activateTab('home');
-        });
+    // Запуск инициализации
+    init();
 
-        // Интерактивные элементы
-        document.querySelectorAll('.samurai-btn').forEach(btn => {
-            btn.addEventListener('mouseenter', () => {
-                btn.style.transform = 'translateY(-3px) scale(1.05)';
-            });
-            
-            btn.addEventListener('mouseleave', () => {
-                btn.style.transform = 'translateY(0) scale(1)';
-            });
-
-            btn.addEventListener('click', () => {
-                switch(btn.textContent.trim()) {
-                    case 'Читать онлайн':
-                        window.open('read.html', '_blank');
-                        break;
-                    case 'Купить книгу':
-                        window.open('purchase.html', '_blank');
-                        break;
-                    case 'Отзывы':
-                        document.querySelector('#reviews').scrollIntoView();
-                        break;
-                }
+    // Дополнительные функции
+    // Автоматическая прокрутка для главных кнопок
+    document.querySelectorAll('.main-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            window.scrollTo({
+                top: document.getElementById('main').offsetTop,
+                behavior: animationConfig.scrollBehavior
             });
         });
+    });
 
-        // Обработка изменений хеша
-        window.addEventListener('hashchange', () => {
-            activateTab(window.location.hash.substring(1) || 'home');
-        });
+    // Адаптивная коррекция высоты
+    const adjustContentHeight = () => {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
     };
 
-    // Первоначальная инициализация
-    const initialTab = window.location.hash.substring(1) || 'home';
-    activateTab(initialTab);
-    initInteractiveMap();
-    initEventHandlers();
+    window.addEventListener('resize', adjustContentHeight);
+    adjustContentHeight();
 
-    // Анимация загрузки страницы
-    setTimeout(() => {
-        document.body.style.opacity = 1;
-    }, 100);
+    // Обработка клавиатуры
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            activateSection('main');
+        }
+    });
 });
