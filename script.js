@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const tabContents = document.querySelectorAll('.tab-content');
     const homeTab = document.getElementById('home-tab');
     const readBtn = document.querySelector('.read-btn');
-    
+    document.querySelector('.menu-tab[data-tab="home"]').classList.add('active');
+});
     // Анимация прокрутки к верху страницы
     function scrollToTop() {
         window.scrollTo({
@@ -16,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Переключение между вкладками
     function switchTab(tabId) {
         // Скрыть все вкладки
+        
         tabContents.forEach(content => {
             content.classList.remove('active');
         });
@@ -30,12 +32,19 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Обработчики событий для вкладок меню
     tabs.forEach(tab => {
-        tab.addEventListener('click', function() {
-            const tabId = this.getAttribute('data-tab');
-            switchTab(tabId);
+    tab.addEventListener('click', function() {
+        // Удаляем класс active у всех вкладок
+        tabs.forEach(t => t.classList.remove('active'));
         });
     });
-    
+
+    this.classList.add('active');
+        
+        const tabId = this.getAttribute('data-tab');
+        switchTab(tabId);
+    });
+});
+
     // Обработчик для логотипа (главная страница)
     homeTab.addEventListener('click', function() {
         switchTab('home');
