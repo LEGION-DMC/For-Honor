@@ -3,102 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Книжный проект</title>
-    <link rel="icon" type="image/png" href="logo.png">
+    <title>Название книги</title>
+    <link rel="icon" href="logo.png" type="image/png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav class="menu-bar">
-        <ul class="menu-list">
-            <li><a href="#map" class="menu-link">Карта мира</a></li>
-            <li><a href="#chapters" class="menu-link">Главы</a></li>
-            <li class="logo-item">
-                <a href="#main" class="logo-link">
-                    <img src="logo.png" alt="Логотип" class="logo">
-                    <span class="book-title">Название книги</span>
-                </a>
-            </li>
-            <li><a href="#materials" class="menu-link">Доп. материалы</a></li>
-            <li><a href="#author" class="menu-link">Об авторе</a></li>
-        </ul>
-    </nav>
-
-    <main class="content-area">
-        <!-- Главная страница -->
-        <section id="main" class="content-section active">
-            <h1>Добро пожаловать</h1>
-            <hr>
-            <p>Описание вашей книги...</p>
-            <hr>
-            <img src="cover.jpg" alt="Обложка" class="book-cover">
-            <hr>
-            <div class="button-group">
-                <button class="main-btn">Читать</button>
-                <button class="main-btn">Оглавление</button>
-                <button class="main-btn">Отзывы</button>
+    <!-- Верхняя панель меню -->
+    <header class="menu">
+        <nav class="menu-nav">
+            <!-- Вкладки слева от логотипа -->
+            <div class="menu-left">
+                <button class="menu-tab" data-tab="map">Карта мира</button>
+                <button class="menu-tab" data-tab="history">История</button>
             </div>
+            
+            <!-- Логотип по центру -->
+            <div class="menu-center">
+                <img src="logo.png" alt="Логотип" class="logo" id="home-tab">
+                <div class="book-title">Название книги</div>
+            </div>
+            
+            <!-- Вкладки справа от логотипа -->
+            <div class="menu-right">
+                <button class="menu-tab" data-tab="lore">Лор</button>
+                <button class="menu-tab" data-tab="author">Об авторе</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Основная область контента -->
+    <main class="content">
+        <!-- Главная страница (по умолчанию) -->
+        <section class="tab-content active" id="home">
+            <h1>Название книги</h1>
+            <div class="divider"></div>
+            <p class="description">Краткое описание книги. Здесь можно рассказать о сюжете, тематике и основных идеях произведения.</p>
+            <div class="divider"></div>
+            <button class="btn read-btn" data-chapter="chapter1">Читать</button>
+            <div class="divider"></div>
         </section>
 
-        <!-- Главы -->
-        <section id="chapters" class="content-section">
+        <!-- История (оглавление) -->
+        <section class="tab-content" id="history">
             <h1>Оглавление</h1>
-            <hr>
-            <div class="chapter-card">Глава 1: Начало пути</div>
-            <div class="chapter-card">Глава 2: Тёмный лес</div>
-            <div class="chapter-card">Глава 3: Затерянный город</div>
-            <div class="chapter-card">Глава 4: Испытание огнём</div>
-            <div class="chapter-card">Глава 5: Финал путешествия</div>
+            <div class="divider"></div>
+            <p class="epigraph">"Эпиграф книги. Мудрая цитата, отражающая суть произведения."</p>
+            <div class="divider"></div>
+            <div class="content-blocks single-column">
+                <div class="content-block" data-image="chapter1.jpg">
+                    <h3>1 Глава: Смерть</h3>
+                    <p>Краткое описание главы...</p>
+                </div>
+                <div class="content-block" data-image="chapter2.jpg">
+                    <h3>2 Глава: Возрождение</h3>
+                    <p>Краткое описание главы...</p>
+                </div>
+                <!-- Добавьте больше глав по аналогии -->
+            </div>
+            <div class="divider"></div>
         </section>
 
-        <!-- Доп. материалы -->
-        <section id="materials" class="content-section">
-            <h1>Дополнительные материалы</h1>
-            <hr>
-            <div class="material-card">
-                <h3>Персонажи</h3>
-                <p>Описание главных героев</p>
+        <!-- Лор (материалы по миру) -->
+        <section class="tab-content" id="lore">
+            <h1>История мира</h1>
+            <div class="divider"></div>
+            <div class="content-blocks double-column">
+                <div class="content-block" data-image="characters.jpg">
+                    <h3>Персонажи</h3>
+                    <p>Описание основных персонажей мира...</p>
+                </div>
+                <div class="content-block" data-image="locations.jpg">
+                    <h3>Локации</h3>
+                    <p>Описание значимых мест мира...</p>
+                </div>
+                <div class="content-block" data-image="legends.jpg">
+                    <h3>Легенды</h3>
+                    <p>Мифы и предания этого мира...</p>
+                </div>
+                <div class="content-block" data-image="haiku.jpg">
+                    <h3>Хокку</h3>
+                    <p>Поэтические зарисовки о мире...</p>
+                </div>
             </div>
-            <div class="material-card">
-                <h3>Локации</h3>
-                <p>Карты и описание мест</p>
-            </div>
-            <div class="material-card">
-                <h3>Артефакты</h3>
-                <p>Магические предметы вселенной</p>
-            </div>
+            <div class="divider"></div>
         </section>
 
         <!-- Об авторе -->
-        <section id="author" class="content-section">
+        <section class="tab-content" id="author">
             <h1>Об авторе</h1>
-            <hr>
-            <div class="author-info">
-                <h3>Имя Автора</h3>
-                <p>Биография и творческий путь</p>
+            <div class="divider"></div>
+            <div class="content-blocks single-column">
+                <div class="content-block" data-image="author.jpg">
+                    <h3>Об авторе</h3>
+                    <p>Биографическая информация об авторе, его творческом пути и других работах...</p>
+                </div>
+                <div class="content-block" data-image="book.jpg">
+                    <h3>О книге</h3>
+                    <p>История создания книги, интересные факты о процессе написания...</p>
+                </div>
             </div>
-            <div class="book-info">
-                <h3>О книге</h3>
-                <p>История создания произведения</p>
-            </div>
+            <div class="divider"></div>
         </section>
 
         <!-- Карта мира -->
-        <section id="map" class="content-section">
+        <section class="tab-content" id="map">
             <h1>Карта мира</h1>
-            <hr>
-            <p>Описание географии вашего мира</p>
-            <div class="map-container">
-                <img src="map.jpg" alt="Карта мира" class="map-image">
+            <div class="divider"></div>
+            <p class="description">Краткое описание мира, его географии и особенностей.</p>
+            <div class="divider"></div>
+            <div class="map-frame">
+                <img src="world-map.jpg" alt="Карта мира">
             </div>
-            <hr>
-            <div class="map-legend">
-                <h4>Легенда карты:</h4>
-                <ul>
-                    <li>★ - Важные города</li>
-                    <li>⚔ - Опасные зоны</li>
-                    <li>🌳 - Заповедные леса</li>
-                </ul>
-            </div>
+            <div class="divider"></div>
+            <p class="map-legend">Пояснение к карте: основные регионы, города и достопримечательности.</p>
+            <div class="divider"></div>
         </section>
     </main>
 
